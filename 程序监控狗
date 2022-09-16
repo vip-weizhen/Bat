@@ -1,0 +1,19 @@
+@echo off
+title Mr.wei PM
+:again
+
+tasklist|findstr -i “Netch.exe”
+if ERRORLEVEL 1 (
+    echo Netch is off in %Date:~0,4%-%Date:~5,2%-%Date:~8,2% %Time:~0,2%:%Time:~3,2%
+    start “” “D:\Netch\Netch.exe”
+)
+
+tasklist|findstr -i “2345Pic.exe”
+if ERRORLEVEL 1 (
+    echo 2345Pic is off in %Date:~0,4%-%Date:~5,2%-%Date:~8,2% %Time:~0,2%:%Time:~3,2%
+    start “” “D:\2345Pic\2345Pic.exe”
+)
+
+choice /t 10 /d y /n > nul  
+
+goto again
