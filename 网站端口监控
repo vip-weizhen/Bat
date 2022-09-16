@@ -1,0 +1,26 @@
+ @echo off
+:: 设置窗体背景颜色
+color 1f
+:: 设置窗体标题
+title 网站存活检测
+echo 开始扫描
+:again
+set statusCode=200
+for /f %%a in ('powershell -command "& {try { $response = Invoke-WebRequest http://118.31.171.185:1234;$Response.StatusCode} catch {$_.Exception.Response.StatusCode.Value__}}"') do (
+set statusCode=%%a
+)
+echo code为：%statusCode%
+if %statusCode%== 200 (
+	echo 在%date:~0,10% %time:~0,8% 文件传输服务访问正常
+	echo 网站存活
+) else if %statusCode%== 500 (
+        echo 在%date:~0,10% %time:~0,8% 网站服务异常
+        call E:\定时器.bat
+        echo 重启服务
+)
+
+
+echo 开始休眠15秒
+choice /t 15 /d y /n >nul
+goto again
+
