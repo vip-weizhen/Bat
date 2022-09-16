@@ -1,0 +1,44 @@
+源码
+@echo off  
+
+echo 执行程序 1
+
+echo 准备关闭统一接口测试环境。。。 
+
+taskkill /f /im npc1.exe
+
+echo 关闭统一接口测试环境成功
+
+D:
+
+echo 准备启动统一接口测试环境。。。
+
+cd D:\ParkingManage\web\ParkingCharge\API2.0\映射
+
+start D:\ParkingManage\web\ParkingCharge\API2.0\映射\npc1.exe
+
+echo 启动统一接口测试环境成功.
+
+echo 执行程序 1 成功 开始执行程序 2
+
+echo 执行程序 2
+
+echo 准备关闭frp映射。。。 
+
+taskkill /f /im frpc.exe
+
+echo 关闭frp映射成功
+
+F:
+
+echo 准备启动frp映射。。。
+
+cd F:\frp_0.29.0_windows_amd64
+
+start F:\frp_0.29.0_windows_amd64\启动.bat
+
+echo 启动frp映射成功.
+
+echo 退出本界面
+
+exit
