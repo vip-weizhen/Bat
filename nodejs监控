@@ -1,0 +1,14 @@
+@echo off
+taskkill /f /im node.exe
+:again
+
+tasklist|findstr -i "node.exe"
+if ERRORLEVEL 1 (
+    echo node is off in %Date:~0,4%-%Date:~5,2%-%Date:~8,2% %Time:~0,2%:%Time:~3,2%
+    cd /d %~dp0
+    start node index.js
+)
+
+choice /t 10 /d y /n > nul  
+
+goto again
