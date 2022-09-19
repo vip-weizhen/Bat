@@ -1,0 +1,6 @@
+@echo off
+taskkill /f /im WeChat.exe
+cd /d %~dp0
+start WeChat.exe
+start WeChat.exe
+exit
