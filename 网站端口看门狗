@@ -1,0 +1,94 @@
+@echo off
+color 1f
+title  网站端口监控看门狗
+rem 网站端口监控 
+rem 检测端口是否正常，不正常则重启服务
+ 
+:start
+rem 设置端口号
+set port1=7099
+
+
+set port2=1234 
+set port3=5700
+set port4=7777
+set port5=8099 
+rem 设置超时时间
+set timeout=3 
+
+rem 检测端口是否正常
+ping 118.31.171.185 -n 1 -w %timeout% | find "TTL=" >nul 
+if %errorlevel% EQU 0 ( 
+    echo 端口 %port1% 正常
+) else ( 
+    echo 端口 %port1% 不正常
+    echo 执行重启指令...
+    taskkill /f /im npc1.exe
+    rem 执行重启指令 
+    E:
+cd E:\NPS\cha
+start E:\NPS\cha\npc1.exe
+    echo 重启完成
+)
+
+ping 118.31.171.185 -n 1 -w %timeout% | find "TTL=" >nul 
+if %errorlevel% EQU 0 ( 
+    echo 端口 %port2% 正常
+) else ( 
+    echo 端口 %port2% 不正常
+    echo 执行重启指令...
+    rem 执行重启指令
+    taskkill /f /im npc2.exe
+E:
+cd E:\NPS\file
+start E:\NPS\file\npc2.exe
+    echo 重启完成
+)
+
+ping 118.31.171.185 -n 1 -w %timeout% | find "TTL=" >nul 
+if %errorlevel% EQU 0 ( 
+    echo 端口 %port3% 正常
+) else ( 
+    echo 端口 %port3% 不正常
+    echo 执行重启指令...
+    rem 执行重启指令
+    taskkill /f /im npc5.exe
+E:
+cd E:\NPS\ql
+start E:\NPS\ql\npc5.exe
+    echo 重启完成
+)
+
+ping 118.31.171.185 -n 1 -w %timeout% | find "TTL=" >nul 
+if %errorlevel% EQU 0 ( 
+    echo 端口 %port4% 正常
+) else ( 
+    echo 端口 %port4% 不正常
+    echo 执行重启指令...
+    rem 执行重启指令
+    taskkill /f /im npc4.exe
+E:
+cd E:\NPS\ts
+start E:\NPS\ts\npc4.exe
+    echo 重启完成
+)
+
+ping 118.31.171.185 -n 1 -w %timeout% | find "TTL=" >nul 
+if %errorlevel% EQU 0 ( 
+    echo 端口 %port5% 正常
+) else ( 
+    echo 端口 %port5% 不正常
+    echo 执行重启指令...
+    rem 执行重启指令
+    taskkill /f /im npc3.exe
+E:
+cd E:\NPS\tyapi
+start E:\NPS\tyapi\npc3.exe
+    echo 重启完成
+)
+
+rem 等待5秒，然后重新检测
+ping 118.31.171.185 -n 5 -w 1000 >nul
+
+goto start
+
