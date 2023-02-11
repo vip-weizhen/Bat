@@ -7,8 +7,6 @@ rem 检测端口是否正常，不正常则重启服务
 :start
 rem 设置端口号
 set port1=7099
-
-
 set port2=1234 
 set port3=5700
 set port4=7777
