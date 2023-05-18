@@ -1,0 +1,12 @@
+@echo off
+
+set  url=http://tv.nxog.top/apitv.php?id=2&b=欧歌
+set  filename=E:\IPTV\IPTV\TS.txt
+
+echo Downloading %url% and saving to %filename% ...
+
+powershell -command "(New-Object System.Net.WebClient).DownloadFile('%url%', '%filename%')"
+
+echo Download complete.
+
+exit
