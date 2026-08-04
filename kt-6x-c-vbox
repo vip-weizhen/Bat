@@ -1,0 +1,15 @@
+@echo off
+echo 正在启动 Debian 12.5 虚拟机...
+
+:: 加双引号包裹路径和虚拟机名，解决空格问题
+"C:\Program Files\Oracle\VirtualBox\VBoxManage" startvm "Debian12.5"
+
+:: 如果启动失败，显示错误信息并暂停
+if errorlevel 1 (
+    echo 启动失败，请检查虚拟机名称是否正确。
+    pause
+    exit /b 1
+)
+
+echo 启动成功！
+exit
